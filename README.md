@@ -4,7 +4,7 @@ Hi All! This is our Central Repository for **Ninja Program**. Please feel free t
 
 ### To create a new repository on the command line
 
-echo "# Technophiles" >> README.md  
+echo "# Welcome Technophiles!" >> README.md  
 git init  
 git commit -m "first commit"  
 git remote add origin git@github.com:gcpfortcs/Technophiles.git  
@@ -14,3 +14,12 @@ git push -u origin master
 
 git remote add origin git@github.com:gcpfortcs/Technophiles.git  
 git push -u origin master
+
+### To clone an existing repository from the command line
+
+git clone git@github.com:gcpfortcs/Technophiles.git  
+
+### To pull from an existing repository from the command line
+
+git pull origin master  
+
