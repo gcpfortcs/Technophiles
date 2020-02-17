@@ -1,3 +1,4 @@
+import { MessageService } from './message.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,26 +9,28 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Techy-Chat';
   message = '';
-  chats = [
-    'Lorem ipsum dolor sit',
-    'amet consectetur',
-    'adipisicing elit. Qui voluptate',
-    'culpa nemo doloribus',
-    'numquam autem',
-    'atque sapiente aliquam',
-    'in quas tenetur',
-    'hic perspiciatis',
-    'omnis magni vitae itaque harum',
-    'nulla nisi?'];
+  chats = [];
+  user;
+  username;
+    constructor(private messageService: MessageService) {
+      this.messageService.getChats().subscribe((data) => {
+        this.chats = data;
+        window.setTimeout(() => {
+          const elem = document.getElementById('scrolldiv');
+          elem.scrollTop = elem.scrollHeight;
+        }, 500);
+      });
+    }
     addChat() {
       if (this.message.length === 0) {
         return;
       }
-      this.chats.push(this.message);
+      this.messageService.addChat(this.message);
       this.message = '';
-      window.setInterval(() => {
-        const elem = document.getElementById('scrolldiv')
-        elem.scrollTop = elem.scrollHeight;
-      }, 500);
+    }
+
+    addUser(user) {
+      this.messageService.addUser(user);
+      this.username = user;
     }
 }

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const app = express()
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/epicchat', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost:27017/techychat', {useNewUrlParser: true})
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
@@ -12,7 +12,35 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../dist')))
 
 io.on('connection', (socket) => {
-  console.log("new user connected")
+  let user = '';
+
+  socket.on('new message', (data) => {
+    const newMessage = new Message({
+      _id: mongoose.Types.ObjectId(),
+      message: data,
+      user: user
+    })
+    newMessage.save().then(rec => {
+      if(rec) {
+        io.emit('message recieved', rec)
+      } else {
+      }
+    })
+  })
+  socket.on('new user', (data) => {
+    user = data;
+    console.log("new user connected")
+    socket.broadcast.emit('user connected', data);
+    Message.find().then(rec => {
+      if(rec) {
+        socket.emit('all messages', rec)
+      } else {
+      }
+    })
+  })
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('user disconnected', user);
+  })
 })
 
 const Message = require('./models/message')
