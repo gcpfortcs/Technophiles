@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const app = express()
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/techychat', {useNewUrlParser: true})
+mongoose.connect('mongodb+srv://mlabfortcs:mlabfortcspwd@techychat-sayfr.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true})
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
