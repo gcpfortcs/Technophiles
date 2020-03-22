@@ -18,6 +18,7 @@ export class AppComponent {
         window.setTimeout(() => {
           const elem = document.getElementById('scrolldiv');
           elem.scrollTop = elem.scrollHeight;
+          window.scrollTo(0,document.body.scrollHeight);
         }, 500);
       });
     }
@@ -27,6 +28,9 @@ export class AppComponent {
       }
       this.messageService.addChat(this.message);
       this.message = '';
+      window.setTimeout(()=>{
+        window.scrollTo(0,document.body.scrollHeight);
+      },100);
     }
 
     addUser(user) {
