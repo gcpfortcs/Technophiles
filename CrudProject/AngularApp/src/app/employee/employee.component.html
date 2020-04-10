@@ -3,8 +3,13 @@
       <div class="card">
         <div class="card-content white-text">
           <div class="row">
-            <div>
-              <img align =right width=6% src="assets/img/ninja.jpg" id="icon" alt="usr icon" label="Data Ninja"/>
+            <div>  
+              <a href="http://localhost:3000/">
+                  <img align=right alt="Exit" src="assets/img/exit.png" 
+                  width="80" height="80">
+              </a>
+              <img align=right width=6% src="assets/img/ninja.jpg" id="icon" alt="usr icon"  
+              label="Data Ninja"/> 
               </div>
               <br>
               <br>
@@ -21,20 +26,20 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input type="text" name="position" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.position" placeholder="Eg : Snr. Developer">
+                    <input type="text" name="position" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.position" placeholder="Eg : Senior Developer" required>
                     <label>Position :</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input type="text" name="office" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.office" placeholder="Enter office location">
+                    <input type="text" name="office" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.office" placeholder="Enter office location" required>
                     <label>Office :</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input type="text" name="kms_covered" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.kms_covered" placeholder="KM's so far covered?">
-                    <label>KM's Covered :</label>
+                    <input type="text" name="kms_covered" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.kms_covered" placeholder="KMs so far covered?" required>
+                    <label>KMs Covered :</label>
                   </div>
                 </div>
                 <div class="row">
